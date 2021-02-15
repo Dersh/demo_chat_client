@@ -1,34 +1,22 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tada_team_chat/bloc/login/login_bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:tada_team_chat/parts/login/bloc/login_bloc.dart';
+import 'package:tada_team_chat/parts/login/screens/login.dart';
 
-import 'bloc/bloc_observer.dart';
-import 'bloc/chat/chat_bloc.dart';
-import 'pages/login.dart';
-
-void main() {
-  Bloc.observer = SimpleBlocObserver();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  HydratedBloc.storage = await HydratedStorage.build();
   runApp(
-    MultiBlocProvider(
-      providers: [
-        BlocProvider<LoginBloc>(create: (context) => LoginBloc()),
-        BlocProvider<ChatBloc>(
-            create: (context) =>
-                ChatBloc(user: BlocProvider.of<LoginBloc>(context).user)
-                  ..add(TryConnect())),
-      ],
-      child: MyApp(),
-    ),
+    MyApp(),
   );
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final title = 'Chat Demo';
     return MaterialApp(
-      title: title,
-      home: LoginForm(),
+      home: BlocProvider(create: (context) => LoginBloc(), child: Login()),
     );
   }
 }
