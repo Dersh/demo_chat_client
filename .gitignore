@@ -1,0 +1,7 @@
+.packages
+pubspec.lock
+.dart_tool/package_config.json
+.dart_tool/flutter_build/
+android/gradle.properties
+build/
+ios/Flutter/.last_build_id
