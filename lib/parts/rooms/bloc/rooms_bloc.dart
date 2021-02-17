@@ -37,6 +37,7 @@ class RoomsBloc extends HydratedBloc<RoomsEvent, RoomsState> {
   Stream<RoomsState> mapEventToState(
     RoomsEvent event,
   ) async* {
+    print("RoomsBloc event $event");
     if (event is RoomsOpened && state is! RoomsLoadSuccess)
       add(RoomsFetched(user: event.user));
     else if (event is RoomsFetched) {

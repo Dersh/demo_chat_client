@@ -17,6 +17,7 @@ class LoginBloc extends HydratedBloc<LoginEvent, LoginState> {
   Stream<LoginState> mapEventToState(
     LoginEvent event,
   ) async* {
+    print("LoginBloc event $event");
     if (event is LoginSubmitted) {
       final status =
           await ConnectivityCheckService.connectivityCheck(['nane.tada.team']);

@@ -47,6 +47,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   Stream<ChatState> mapEventToState(
     ChatEvent event,
   ) async* {
+    print("ChatBloc event $event");
     if (event is ChatFetched) {
       ChatLogger().memoryOutput.buffer.clear();
       ChatLogger().logger.i('чат $room открыт');
