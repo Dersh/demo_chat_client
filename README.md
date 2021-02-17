@@ -80,7 +80,7 @@ $ flutter pub get
 $ cd ios
 $ pod install
 $ cd ..
-```text
+```
 
 # Планы на развитие
 
