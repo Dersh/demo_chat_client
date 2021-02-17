@@ -134,7 +134,13 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       history = await chatRepository.downloadChatHistory(user.username, room);
       history = history.reversed.toList();
     } catch (e) {
-      ChatLogger().logger.i('ошибка при загрузке истории');
+      ChatLogger().logger.i("ошибка при загрузке истории: $e");
+      history.add(ReceivedMessage(
+          room: room,
+          created: DateTime.now().toString(),
+          sender: Sender(username: "System"),
+          text: "ошибка при загрузке истории: $e",
+          id: null));
     }
     return history;
   }
