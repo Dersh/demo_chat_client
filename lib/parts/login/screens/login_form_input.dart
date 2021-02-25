@@ -39,7 +39,8 @@ class _LoginFormInputState extends State<LoginFormInput> {
                   textCapitalization: TextCapitalization.words,
                   enableSuggestions: false,
                   validator: (value) {
-                    if (!RegExp(r'^[A-Za-z0-9А-Яа-я -]{3,20}$').hasMatch(value))
+                    if (!RegExp(r'^[A-Za-z0-9А-ЯЁа-яё -]{3,20}$')
+                        .hasMatch(value))
                       return 'Пожалуйста введите от 3 до 20 символов без спец.знаков';
                     return null;
                   },
